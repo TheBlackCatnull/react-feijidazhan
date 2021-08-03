@@ -1,0 +1,533 @@
+/*main game board and font style*/
+@font-face {
+  src: url(../font/Righteous-Regular.ttf);
+  font-family: "Righteous";
+}
+.Audio {
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #fff;
+  font-family: "Righteous";
+}
+
+body {
+  min-height: 100vh;
+  background: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box {
+  position: relative;
+}
+.container {
+  height: 600px;
+  width: 960px;
+  background: url(../imgs/background.png);
+  position: relative;
+  overflow: hidden;
+  animation: bg 40s linear infinite;
+  animation-play-state: paused;
+}
+.container1 {
+  height: 600px;
+  width: 960px;
+  background: url(../imgs/background.png);
+  position: relative;
+  overflow: hidden;
+  animation: bg 40s linear infinite;
+  animation-play-state: paused;
+}
+
+.container > * {
+  position: absolute;
+}
+.container1 > * {
+  position: absolute;
+}
+@keyframes bg {
+  to {
+    background-position: -1920px 0;
+  }
+}
+
+/*设置按钮：游戏设置*/
+.setting-box {
+  right: 20px;
+  top: 20px;
+}
+
+.setting-item {
+  margin-left: 10px;
+}
+
+.controllable {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.controllable:hover {
+  filter: brightness(150%);
+}
+
+/*顶栏菜单*/
+.topbar {
+  display: flex;
+  align-items: center;
+}
+
+.logo-box {
+  height: 80px;
+  padding: 10px;
+  z-index: 5;
+}
+
+.logo {
+  height: 100%;
+  transform: translate(437px, 270px) scale(4);
+}
+
+.top-item {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.top-item span {
+  width: 30px;
+  text-align: center;
+  margin-left: -32px;
+}
+
+.fuel-counter-box {
+  height: 24px;
+  width: 240px;
+  background: #111;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  overflow: hidden;
+}
+
+.fuel-counter {
+  height: 100%;
+  width: 50%;
+  background-image: linear-gradient(
+    to bottom right,
+    transparent 25%,
+    rgba(0, 0, 0, 0.3) 25%,
+    rgba(0, 0, 0, 0.3) 50%,
+    transparent 50%,
+    transparent 75%,
+    rgba(0, 0, 0, 0.3) 75%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  background-color: #f40;
+  background-size: 24px 24px;
+  animation: counter 1s linear infinite;
+  animation-play-state: paused;
+  transition: 0.1s;
+}
+
+@keyframes counter {
+  to {
+    background-position: -24px 0;
+  }
+}
+
+/*背景行星：始终在背景中循环*/
+.planet-box {
+  left: 100%;
+  transform: translateX(120px);
+  z-index: 5;
+  transition: 0.5s;
+}
+
+/*5 kinds of planets*/
+.planet-item:nth-child(1) {
+  height: 40px;
+  animation: toLeft 14s linear infinite;
+}
+
+.planet-item:nth-child(2) {
+  height: 100px;
+  animation: toLeft 8s linear infinite;
+}
+
+.planet-item:nth-child(3) {
+  height: 120px;
+  animation: toLeft 6s linear infinite;
+}
+
+.planet-item:nth-child(4) {
+  height: 80px;
+  animation: toLeft 10s linear infinite;
+}
+
+.planet-item:nth-child(5) {
+  height: 60px;
+  animation: toLeft 12s linear infinite;
+}
+
+.planet-box .planet-item {
+  display: block;
+  margin: 30px 0;
+  filter: brightness(30%);
+  animation-play-state: paused;
+  transform: translateX(-100%);
+}
+
+@keyframes toLeft {
+  to {
+    transform: translateX(-1200px);
+  }
+}
+
+/*游戏主板*/
+.board {
+  height: 100%;
+  width: 100%;
+  padding: 50px 100px;
+  background: #111;
+  z-index: 3;
+}
+
+.board > * {
+  color: #fff;
+  margin: 5px 0;
+  line-height: 1.5;
+}
+
+/*指示牌*/
+.logo.instructions {
+  animation: addd 0.5s 0.5s forwards;
+}
+@keyframes addd {
+  to {
+    transform: translate(680px, 50px) scale(1.6);
+    transition: 0.5s 0.5s;
+  }
+}
+@keyframes gaming {
+  to {
+    transform: none;
+    transition: 0.5s 0.1s;
+  }
+}
+
+.instructions-board > *:nth-child(n) {
+  transform: translateY(-50px);
+  opacity: 0;
+}
+
+.instructions-board > *:nth-child(n + 4) {
+  transform: translateX(-50px);
+}
+
+.instructions-board > *:nth-child(n + 8) {
+  transform: translateX(50px);
+}
+
+.instructions-board > *:nth-child(n + 12) {
+  transform: translateY(50px);
+}
+
+.instructions-board > .btn {
+  transform: scale(0.6);
+}
+
+/*游戏板*/
+.logo.gaming {
+  animation: gaming 0.5s 0.5s forwards;
+}
+
+/*模板*/
+.logo.form {
+  transform: translate(90px, 150px);
+}
+
+.form-board {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+/*排名表*/
+.logo.ranking {
+  transform: translate(0px, 270px);
+}
+
+.ranking-table * {
+  text-align: center;
+}
+
+.ranking-table {
+  height: 100%;
+  width: 100%;
+}
+
+.ranking-table tbody {
+  perspective: 400px;
+}
+
+.ranking-table th {
+  width: 25%;
+}
+
+.ranking-table tr {
+  transform: rotateX(45deg) translateY(100px);
+  opacity: 0;
+}
+
+.ranking-table tr.player-score td {
+  color: #f40;
+}
+
+@keyframes general {
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/*form elements in the game*/
+.btn {
+  height: 40px;
+  width: 100%;
+  outline: none;
+  background: #f40;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #f19e0d;
+}
+
+.btn:before {
+  content: "";
+  display: block;
+  height: 40px;
+  width: 40px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+
+.btn:active:before {
+  animation: btn 1s forwards;
+}
+
+.btn.disabled {
+  cursor: not-allowed;
+  background: #333;
+}
+
+.btn.disabled:hover {
+  background: #111;
+}
+
+@keyframes btn {
+  50% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+.input {
+  height: 40px;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom: 2px solid #f40;
+}
+
+/*game elements*/
+/*spaceships in the game*/
+.player {
+  height: 40px;
+  width: 100px;
+  background: url(../imgs/player.png);
+  animation: ship 0.4s steps(4) infinite, general 1s forwards;
+  animation-play-state: paused;
+  top: 280px;
+  left: 50px;
+  transform: translateX(-200px) scaleY(0.4);
+}
+
+.friend {
+  height: 40px;
+  width: 100px;
+  background: url(../imgs/friend.png);
+  animation: toLeft1 2s linear forwards, ship 0.4s steps(4) infinite;
+  left: 100%;
+}
+
+.enemy {
+  height: 80px;
+  width: 80px;
+  background: url(../imgs/enemy.png);
+  animation: toLeft1 2s linear forwards, ship 0.4s steps(4) infinite;
+  left: 100%;
+}
+
+@keyframes ship {
+  to {
+    background-position: -400% 0;
+  }
+}
+
+/*shots: shot by spaceship*/
+.bullet,
+.enemy-bullet {
+  height: 6px;
+  width: 24px;
+  background: #f90;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  top: 297px;
+  left: 180px;
+  animation: bullet 1.2s linear forwards;
+}
+
+.enemy-bullet {
+  background: #f00;
+  animation: toLeft1 2s linear forwards;
+}
+
+@keyframes bullet {
+  to {
+    left: 120%;
+  }
+}
+
+@keyframes toLeft1 {
+  to {
+    left: -20%;
+  }
+}
+
+/*4 kinds of aestroids*/
+.aestroid {
+  height: 80px;
+  width: 80px;
+  left: 100%;
+  animation: aestroid1 2s linear forwards;
+}
+
+.aestroid-1 {
+  background: url(../imgs/aestroid-1.png);
+}
+
+.aestroid-2 {
+  background: url(../imgs/aestroid-2.png);
+}
+
+.aestroid-3 {
+  background: url(../imgs/aestroid-3.png);
+}
+
+.aestroid-4 {
+  background: url(../imgs/aestroid-4.png);
+}
+
+@keyframes aestroid {
+  to {
+    transform: translateX(-1200px) rotate(2turn);
+  }
+}
+@keyframes aestroid1 {
+  to {
+    left: -20%;
+    transform: rotate(2turn);
+  }
+}
+
+/*fuel icon with animation*/
+.fuel {
+  height: 40px;
+  width: 40px;
+  background: url(../imgs/fuel.png);
+  top: -50px;
+  animation: fuel 2s linear forwards;
+}
+
+@keyframes fuel {
+  to {
+    /* transform: translateY(800px) rotate(2turn); */
+    transform: rotate(2turn);
+    top: 120%;
+  }
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0.3;
+  }
+}
+
+/*score counter will show when the game score changed*/
+.score-counter {
+  width: 50px;
+  text-align: center;
+  background: #f40;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  animation: score 1s linear forwards;
+}
+
+.score-counter.score-plus {
+  background: #f40;
+}
+
+.score-counter.score-minus {
+  background: #06f;
+}
+
+@keyframes score {
+  50% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+
+/*当主飞船燃料减少时显示红色层*/
+.layer-red {
+  height: 100%;
+  width: 100%;
+  z-index: 9;
+  box-shadow: 0 0 100px rgba(255, 0, 0, 0.5) inset;
+  animation: layer 1s linear forwards;
+}
+
+@keyframes layer {
+  40%,
+  60% {
+    opacity: 1;
+  }
+  0%,
+  100% {
+    opacity: 0;
+  }
+}
